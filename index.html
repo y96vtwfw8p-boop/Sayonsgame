@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sayons Games</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d1110;
+    color: white;
+}
+
+header {
+    background: #151b19;
+    border-bottom: 1px solid #26322e;
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #35c98b;
+    margin-right: auto;
+}
+
+.logo span {
+    color: white;
+}
+
+button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 15px;
+    background: #1b2421;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #24966a;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 16px 50px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+h1 {
+    margin: 0 0 8px;
+    font-size: 30px;
+}
+
+.subtitle {
+    color: #9aa9a3;
+    margin-bottom: 25px;
+}
+
+/* ИГРЫ */
+
+.author-title {
+    margin-bottom: 15px;
+    padding: 13px 15px;
+    background: #151b19;
+    border-left: 4px solid #35c98b;
+    border-radius: 8px;
+    color: #35c98b;
+    font-weight: bold;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.game {
+    display: block;
+    text-decoration: none;
+    color: white;
+    background: #151b19;
+    border: 1px solid #26322e;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: 0.15s;
+}
+
+.game:hover {
+    transform: translateY(-3px);
+    border-color: #35c98b;
+}
+
+.game-icon {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    background: #1b2421;
+}
+
+.game-info {
+    padding: 14px;
+}
+
+.game-info h3 {
+    margin: 0 0 7px;
+    font-size: 18px;
+}
+
+.game-info p {
+    margin: 0;
+    color: #9aa9a3;
+    font-size: 14px;
+}
+
+/* ПОИСК */
+
+.search-box {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid #2b3934;
+    border-radius: 10px;
+    background: #151b19;
+    color: white;
+    outline: none;
+    font-size: 16px;
+}
+
+.search-box input:focus {
+    border-color: #35c98b;
+}
+
+.empty {
+    color: #9aa9a3;
+    padding: 30px 0;
+    text-align: center;
+}
+
+/* ДОБАВЛЕНИЕ */
+
+.notice {
+    max-width: 800px;
+    background: #151b19;
+    border: 1px solid #26322e;
+    border-radius: 16px;
+    padding: 22px;
+    line-height: 1.6;
+    font-size: 17px;
+}
+
+.notice a {
+    color: #35c98b;
+}
+
+.warning {
+    margin-top: 20px;
+    padding: 14px;
+    background: #241d12;
+    border: 1px solid #59451f;
+    border-radius: 10px;
+}
+
+/* ТЕЛЕФОН */
+
+@media (max-width: 600px) {
+
+    .header-inner {
+        gap: 7px;
+    }
+
+    .logo {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .header-inner button {
+        flex: 1;
+        padding: 10px 7px;
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .games {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .game-icon {
+        height: 120px;
+    }
+
+    .game-info {
+        padding: 11px;
+    }
+
+    .game-info h3 {
+        font-size: 16px;
+    }
+
+    .game-info p {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-inner">
+
+<div class="logo">
+Sayons <span>Games</span>
+</div>
+
+<button onclick="showPage('menu')">
+Меню
+</button>
+
+<button onclick="showPage('search')">
+Поиск игры
+</button>
+
+<button onclick="showPage('add')">
+Добавить свою
+</button>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<!-- МЕНЮ -->
+
+<section id="menu" class="page active">
+
+<h1>Игры</h1>
+
+<p class="subtitle">
+Каталог игр Sayons Games
+</p>
+
+<div class="author-title">
+игры от автора sayonsgame
+</div>
+
+
+<div class="games">
+
+
+<!-- SPIDER MAN -->
+
+<a
+class="game"
+href="https://y96vtwfw8p-boop.github.io/Spider-/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div
+class="game-icon"
+style="
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+"
+>
+🕷️
+</div>
+
+<div class="game-info">
+
+<h3>
+Spider Man: Fan Game
+</h3>
+
+<p>
+3D игра с открытым городом
+</p>
+
+</div>
+
+</a>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ПОИСК -->
+
+<section id="search" class="page">
+
+<h1>
+Поиск игры
+</h1>
+
+<p class="subtitle">
+Введите любое слово из названия игры.
+</p>
+
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="search"
+placeholder="Например: Spider"
+autocomplete="off"
+>
+
+<button onclick="searchGames()">
+Найти
+</button>
+
+</div>
+
+
+<div
+class="games"
+id="searchResults"
+>
+</div>
+
+</section>
+
+
+
+<!-- ДОБАВИТЬ -->
+
+<section id="add" class="page">
+
+<h1>
+Добавить свою игру
+</h1>
+
+
+<div class="notice">
+
+<p>
+напишите о публикации игры в тг
+<a
+href="https://t.me/sayonsgame"
+target="_blank"
+rel="noopener noreferrer"
+>@sayonsgame</a>
+
+либо вк
+
+<a
+href="https://vk.ru/egorkaj"
+target="_blank"
+rel="noopener noreferrer"
+>https://vk.ru/egorkaj</a>
+
+и отправте код игры index html, именно КОД.
+</p>
+
+
+<div class="warning">
+
+Код нужен именно текстом. Не отправляйте сам файл index.html.
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+
+<script>
+
+/* СПИСОК ИГР */
+
+const games = [
+
+{
+title: "Spider Man: Fan Game",
+
+description: "3D игра с открытым городом",
+
+url: "https://y96vtwfw8p-boop.github.io/Spider-/",
+
+icon: "🕷️"
+}
+
+];
+
+
+
+/* ПЕРЕКЛЮЧЕНИЕ РАЗДЕЛОВ */
+
+function showPage(page) {
+
+document
+.querySelectorAll(".page")
+.forEach(function(element) {
+
+element.classList.remove("active");
+
+});
+
+
+document
+.getElementById(page)
+.classList.add("active");
+
+
+window.scrollTo(0, 0);
+
+
+if (page === "search") {
+
+document
+.getElementById("searchInput")
+.focus();
+
+searchGames();
+
+}
+
+}
+
+
+
+/* КАРТОЧКА ИГРЫ */
+
+function createGameCard(game) {
+
+return `
+
+<a
+class="game"
+href="${game.url}"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div
+class="game-icon"
+style="
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+"
+>
+${game.icon}
+</div>
+
+<div class="game-info">
+
+<h3>
+${escapeHTML(game.title)}
+</h3>
+
+<p>
+${escapeHTML(game.description)}
+</p>
+
+</div>
+
+</a>
+
+`;
+
+}
+
+
+
+/* ПОИСК */
+
+function searchGames() {
+
+const input =
+document
+.getElementById("searchInput")
+.value
+.trim()
+.toLowerCase();
+
+
+const results =
+games.filter(function(game) {
+
+return game.title
+.toLowerCase()
+.includes(input);
+
+});
+
+
+const container =
+document.getElementById("searchResults");
+
+
+if (results.length > 0) {
+
+container.innerHTML =
+results
+.map(createGameCard)
+.join("");
+
+} else {
+
+container.innerHTML =
+'<div class="empty">Игра не найдена.</div>';
+
+}
+
+}
+
+
+
+/* ЗАЩИТА ТЕКСТА */
+
+function escapeHTML(text) {
+
+return text.replace(
+/[&<>"']/g,
+function(character) {
+
+return {
+
+"&": "&amp;",
+"<": "&lt;",
+">": "&gt;",
+'"': "&quot;",
+"'": "&#039;"
+
+}[character];
+
+}
+);
+
+}
+
+
+
+/* ПОИСК В РЕАЛЬНОМ ВРЕМЕНИ */
+
+document
+.getElementById("searchInput")
+.addEventListener(
+"input",
+searchGames
+);
+
+</script>
+
+</body>
+</html>
